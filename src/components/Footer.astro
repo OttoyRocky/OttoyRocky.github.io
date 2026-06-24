@@ -1,0 +1,45 @@
+---
+interface Props {
+  backLabel?: string;
+  backHref?: string;
+}
+const { backLabel = "← volver al inicio", backHref = "/" } = Astro.props;
+---
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding: 28px 0 48px;
+  }
+  .footer-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dimmer);
+  }
+  .footer-row a {
+    color: var(--text-dimmer);
+    text-decoration: none;
+  }
+  .footer-row a:hover {
+    color: var(--accent);
+  }
+</style>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <span>OTTO · constructor de herramientas · BA, Argentina</span>
+      <a href={backHref}>{backLabel}</a>
+    </div>
+  </div>
+</footer>

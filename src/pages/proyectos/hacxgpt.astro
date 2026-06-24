@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Connector from '../../components/Connector.astro';
+---
+
+<BaseLayout title="HacXGPT" description="Copiloto de IA local para trabajo ofensivo. Sugiere comandos, interpreta resultados de nmap, sin telemetría.">
+  <style>
+    .breadcrumb { padding-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.5px; }
+    .breadcrumb a { color: var(--text-dimmer); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .hero { padding: 28px 0 48px; }
+    .eyebrow-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .status { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow-status); box-shadow: 0 0 8px var(--yellow-status); }
+
+    h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 42px; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 18px; }
+    h1 .accent-text { color: var(--accent); }
+    .thesis { font-size: 17px; color: var(--text-dim); max-width: 540px; margin-bottom: 28px; }
+    .badges { margin-bottom: 28px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+    .env-card { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 6px; padding: 18px; }
+    .env-card .env-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .env-card .env-dot { width: 6px; height: 6px; border-radius: 50%; }
+    .env-card.fast .env-dot { background: #3fb950; }
+    .env-card.slow .env-dot { background: var(--yellow-status); }
+    .env-card .env-row { font-size: 12px; color: var(--text-dim); margin-bottom: 4px; display: flex; justify-content: space-between; gap: 10px; }
+    .env-card .env-row span:first-child { color: var(--text-dimmer); }
+
+    .module-list { margin-top: 16px; }
+    .module-row { display: flex; align-items: baseline; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .module-row:last-child { border-bottom: none; }
+    .module-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); flex: 0 0 26px; }
+    .module-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); flex: 0 0 140px; }
+    .module-desc { font-size: 12.5px; color: var(--text-dim); flex: 1; }
+    .module-tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-dimmer); }
+    .module-tag.live { color: #3fb950; border-color: #1d3a23; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+      .env-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / <a href="/proyectos">proyectos</a> / hacxgpt</div>
+
+    <section class="hero">
+      <div class="eyebrow-row">
+        <span class="eyebrow mono">[HACXGPT]</span>
+        <span class="status"><span class="status-dot"></span> v8.1 · EN DESARROLLO</span>
+      </div>
+
+      <h1>Un copiloto de IA<br>para <span class="accent-text">trabajo ofensivo</span>.</h1>
+
+      <p class="thesis">
+        Capa de integración entre modelos de lenguaje locales y el flujo de trabajo diario de
+        pentesting — desde sugerir el próximo comando hasta acelerar el análisis de resultados
+        de nmap, sin mandar nada a la nube.
+      </p>
+
+      <div class="badges">
+        <span class="badge">PYTHON</span>
+        <span class="badge">OLLAMA</span>
+        <span class="badge">MISTRAL:7B</span>
+        <span class="badge">TINYLLAMA</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://github.com/OttoyRocky/HacXGPT-Private" class="btn btn-primary">→ Ver en GitHub</a>
+        <a href="#modulos" class="btn btn-secondary">Ver módulos</a>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">EL PROBLEMA</div>
+      <p>
+        Los asistentes de IA genéricos rechazan o limitan fuertemente las consultas de
+        seguridad ofensiva, y los que no lo hacen suelen correr en la nube — inaceptable
+        cuando se está trabajando sobre datos de un cliente o un objetivo en alcance.
+      </p>
+      <p>
+        <strong>HacXGPT</strong> resuelve esto corriendo el modelo completamente local, sobre
+        el hardware del operador, integrado directamente a las herramientas que ya se usan
+        en el día a día — sin intermediarios ni telemetría.
+      </p>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">DOS ENTORNOS, DOS MODELOS</div>
+      <p>El mismo asistente corre distinto según el hardware disponible:</p>
+
+      <div class="env-grid">
+        <div class="env-card fast">
+          <div class="env-name"><span class="env-dot"></span>WINDOWS / WSL</div>
+          <div class="env-row"><span>Modelo</span><span class="mono">mistral:7b</span></div>
+          <div class="env-row"><span>Endpoint</span><span class="mono">172.20.160.1:11434</span></div>
+          <div class="env-row"><span>nmap_ai.py</span><span class="mono">✓ funcional</span></div>
+        </div>
+        <div class="env-card slow">
+          <div class="env-name"><span class="env-dot"></span>RASPBERRY PI</div>
+          <div class="env-row"><span>Modelo</span><span class="mono">tinyllama</span></div>
+          <div class="env-row"><span>Endpoint</span><span class="mono">localhost:11434</span></div>
+          <div class="env-row"><span>nmap_ai.py</span><span class="mono">⚠ lento</span></div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block" id="modulos">
+      <div class="section-label">MÓDULOS</div>
+      <div class="module-list">
+        <div class="module-row">
+          <span class="module-num mono">14</span>
+          <span class="module-name">nmap_ai.py</span>
+          <span class="module-desc">interpreta resultados de nmap en lenguaje natural</span>
+          <span class="module-tag live">LIVE</span>
+        </div>
+        <div class="module-row">
+          <span class="module-num mono">—</span>
+          <span class="module-name">nuclei→Ollama</span>
+          <span class="module-desc">pipeline de hallazgos hacia el modelo</span>
+          <span class="module-tag">PENDIENTE</span>
+        </div>
+        <div class="module-row">
+          <span class="module-num mono">—</span>
+          <span class="module-name">chat memory</span>
+          <span class="module-desc">contexto persistente entre sesiones</span>
+          <span class="module-tag">PENDIENTE</span>
+        </div>
+        <div class="module-row">
+          <span class="module-num mono">—</span>
+          <span class="module-name">gap analysis</span>
+          <span class="module-desc">detección dinámica de cobertura faltante</span>
+          <span class="module-tag">PENDIENTE</span>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">STACK Y DECISIONES</div>
+      <div class="stack-table">
+        <div class="stack-row">
+          <div class="stack-key mono">100% local</div>
+          <div class="stack-val">Ningún dato de un engagement sale del entorno del operador. No negociable en este tipo de trabajo.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Modelo por hardware</div>
+          <div class="stack-val">mistral:7b en Windows (GPU/RAM disponible), tinyllama en el Pi — el mismo código, distinto motor según el entorno.</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">ESTADO DEL PROYECTO</div>
+      <div class="status-panel">
+        <div class="status-grid">
+          <div class="stat">
+            <div class="stat-num accent">v8.1</div>
+            <div class="stat-label mono">VERSIÓN ACTUAL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1/4</div>
+            <div class="stat-label mono">MÓDULOS LIVE</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">2</div>
+            <div class="stat-label mono">ENTORNOS SOPORTADOS</div>
+          </div>
+        </div>
+        <div class="next-steps">
+          <div class="ns-label mono">SIGUIENTE</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Pipeline nuclei/gobuster → Ollama</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Memoria de chat persistente</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> setx permanente para OLLAMA_HOST</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">PROBARLO LOCALMENTE</div>
+      <p>Requiere Ollama corriendo con el modelo correspondiente descargado.</p>
+      <div class="install-box">
+        <div><span class="comment">// clonar el repo</span></div>
+        <div class="cmd">git clone github.com/OttoyRocky/HacXGPT-Private</div>
+        <div style="height:8px"></div>
+        <div><span class="comment">// en Windows, exponer Ollama a WSL</span></div>
+        <div class="cmd">$env:OLLAMA_HOST="0.0.0.0:11434"</div>
+        <div style="height:8px"></div>
+        <div><span class="comment">// correr</span></div>
+        <div class="cmd">python hacxgpt.py</div>
+      </div>
+    </section>
+  </div>
+
+  <Footer backLabel="← volver a proyectos" backHref="/proyectos" />
+</BaseLayout>

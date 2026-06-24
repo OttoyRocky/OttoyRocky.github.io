@@ -1,0 +1,68 @@
+---
+---
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(13, 17, 23, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo span {
+    color: var(--accent);
+  }
+  .navlinks {
+    display: flex;
+    gap: 28px;
+  }
+  .navlinks a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+  }
+  .navlinks a:hover {
+    color: var(--accent);
+  }
+  .nav-toggle {
+    display: none;
+  }
+  @media (max-width: 560px) {
+    .navlinks {
+      gap: 18px;
+    }
+    .navlinks a {
+      font-size: 11px;
+    }
+  }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">OTTO<span>_</span></a>
+    <div class="navlinks">
+      <a href="/proyectos">PROYECTOS</a>
+      <a href="/writeups">WRITEUPS</a>
+      <a href="/sobre-otto">SOBRE_OTTO</a>
+      <a href="/contacto">CONTACTO</a>
+    </div>
+  </div>
+</nav>

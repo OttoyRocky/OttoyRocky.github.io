@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout title="Proyectos">
+  <style>
+    .breadcrumb {
+      padding-top: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dimmer);
+      letter-spacing: 0.5px;
+    }
+    .breadcrumb a {
+      color: var(--text-dimmer);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--accent);
+    }
+    .hero {
+      padding: 28px 0 40px;
+    }
+    h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin: 16px 0 14px;
+    }
+    .lede {
+      font-size: 16.5px;
+      color: var(--text-dim);
+      max-width: 540px;
+    }
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 40px;
+    }
+    .project-card {
+      display: block;
+      text-decoration: none;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 22px;
+      transition: border-color 0.15s ease;
+    }
+    .project-card:hover {
+      border-color: var(--accent-dim);
+    }
+    .pc-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .pc-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pc-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-dimmer);
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+    .pc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .pc-dot.green {
+      background: var(--green-status);
+      box-shadow: 0 0 6px var(--green-status);
+    }
+    .pc-dot.yellow {
+      background: var(--yellow-status);
+    }
+    .pc-desc {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      max-width: 540px;
+    }
+    .pc-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .pc-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      color: var(--text-dimmer);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 3px;
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / proyectos</div>
+
+    <section class="hero">
+      <span class="eyebrow mono">[PROYECTOS]</span>
+      <h1>Lo que construí.</h1>
+      <p class="lede">
+        Tres herramientas propias, en distintos estados de madurez, todas resolviendo
+        un problema real del trabajo de seguridad ofensiva del día a día.
+      </p>
+    </section>
+
+    <div class="project-list">
+      <a href="/proyectos/phantom-brain" class="project-card">
+        <div class="pc-top">
+          <span class="pc-name mono">phantom-brain</span>
+          <span class="pc-status mono"><span class="pc-dot green"></span>v0.9 · ACTIVO</span>
+        </div>
+        <p class="pc-desc">Asistente de pentesting con IA local que analiza capturas WiFi, NFC y Sub-GHz sin salir del hardware del operador.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">PYTHON</span><span class="pc-tag">FLASK</span><span class="pc-tag">OLLAMA</span><span class="pc-tag">SQLITE</span>
+        </div>
+      </a>
+
+      <a href="/proyectos/bounty-hunter" class="project-card">
+        <div class="pc-top">
+          <span class="pc-name mono">bounty-hunter</span>
+          <span class="pc-status mono"><span class="pc-dot green"></span>PRODUCCIÓN</span>
+        </div>
+        <p class="pc-desc">Pipeline de reconocimiento automatizado para bug bounty: descubrimiento, verificación, escaneo y priorización con IA.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">SUBFINDER</span><span class="pc-tag">HTTPX</span><span class="pc-tag">NUCLEI</span><span class="pc-tag">DALFOX</span>
+        </div>
+      </a>
+
+      <a href="/proyectos/hacxgpt" class="project-card">
+        <div class="pc-top">
+          <span class="pc-name mono">hacxgpt</span>
+          <span class="pc-status mono"><span class="pc-dot yellow"></span>v8.1 · EN DESARROLLO</span>
+        </div>
+        <p class="pc-desc">Copiloto de IA local para trabajo ofensivo — sugiere comandos, interpreta resultados de nmap, sin telemetría.</p>
+        <div class="pc-tags">
+          <span class="pc-tag">PYTHON</span><span class="pc-tag">MISTRAL:7B</span><span class="pc-tag">TINYLLAMA</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>

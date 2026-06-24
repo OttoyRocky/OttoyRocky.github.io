@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Connector from '../components/Connector.astro';
+---
+
+<BaseLayout title="Sobre OTTO" description="17 años en neurofisiología clínica, ahora en seguridad ofensiva. La historia detrás de OTTO.">
+  <style>
+    .wrap { max-width: 720px; }
+    .breadcrumb { padding-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.5px; }
+    .breadcrumb a { color: var(--text-dimmer); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .hero { padding: 28px 0 40px; }
+    h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 38px; line-height: 1.2; letter-spacing: -0.5px; margin: 20px 0 16px; }
+    h1 .accent-text { color: var(--accent); }
+    .lede { font-size: 17px; color: var(--text-dim); max-width: 560px; }
+
+    /* timeline - genuinely sequential, numbering is justified */
+    .timeline { position: relative; padding-left: 28px; margin-top: 20px; }
+    .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 1px; background: var(--border); }
+    .tl-item { position: relative; padding-bottom: 26px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before { content: ""; position: absolute; left: -28px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-dim); }
+    .tl-item.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+    .tl-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 4px; }
+    .tl-title { font-size: 14.5px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .tl-desc { font-size: 13.5px; color: var(--text-dim); max-width: 540px; }
+
+    .transfer-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: center; margin-top: 20px; }
+    .transfer-from, .transfer-to {
+      background: var(--bg-raised); border: 1px solid var(--border); border-radius: 6px;
+      padding: 14px 16px; font-size: 13px; color: var(--text-dim); margin-bottom: 10px;
+    }
+    .transfer-from { border-right: none; border-radius: 6px 0 0 6px; }
+    .transfer-to { border-left: none; border-radius: 0 6px 6px 0; border-left: 1px solid var(--border); color: var(--text); }
+    .transfer-arrow { color: var(--accent-dim); font-size: 16px; padding: 0 10px; margin-bottom: 10px; }
+    .transfer-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-dimmer); letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+
+    .umbra-link {
+      display: inline-block;
+      font-size: 12.5px;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: 4px;
+    }
+    .umbra-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 30px; }
+      .transfer-grid { grid-template-columns: 1fr; }
+      .transfer-arrow { transform: rotate(90deg); padding: 6px 0; }
+      .transfer-from { border-radius: 6px; border-right: 1px solid var(--border); }
+      .transfer-to { border-radius: 6px; border-left: 1px solid var(--border); }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / sobre-otto</div>
+
+    <section class="hero">
+      <span class="eyebrow mono">[SOBRE_OTTO]</span>
+      <h1>17 años analizando<br>patrones. Ahora<br>analizo <span class="accent-text">ataques</span>.</h1>
+      <p class="lede">
+        No vengo de Ciencias de la Computación. Vengo de un quirófano de electrofisiología,
+        mirando trazados cerebrales en busca de la anomalía que no debería estar ahí. Resulta
+        que es el mismo trabajo.
+      </p>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">LA TRANSFERENCIA</div>
+      <p>17 años de neurofisiología clínica no fueron un desvío — fueron entrenamiento para esto:</p>
+
+      <div class="transfer-grid">
+        <div class="transfer-from">
+          <span class="transfer-label mono">CLÍNICA</span>
+          Leer un trazado de EEG de 500+ pacientes buscando el patrón anómalo entre miles de líneas normales.
+        </div>
+        <div class="transfer-arrow">→</div>
+        <div class="transfer-to">
+          <span class="transfer-label mono">SEGURIDAD</span>
+          Leer el tráfico de una API buscando la respuesta que no debería revelar lo que revela.
+        </div>
+
+        <div class="transfer-from">
+          <span class="transfer-label mono">CLÍNICA</span>
+          Seguir protocolos rígidos en estudios nocturnos donde un error de registro invalida horas de trabajo.
+        </div>
+        <div class="transfer-arrow">→</div>
+        <div class="transfer-to">
+          <span class="transfer-label mono">SEGURIDAD</span>
+          Mantener OpSec disciplinada — alcance, rate limiting, documentación — donde un error invalida un reporte.
+        </div>
+
+        <div class="transfer-from">
+          <span class="transfer-label mono">CLÍNICA</span>
+          Trabajar en entornos de alta presión sin margen para distraerse con lo irrelevante.
+        </div>
+        <div class="transfer-arrow">→</div>
+        <div class="transfer-to">
+          <span class="transfer-label mono">SEGURIDAD</span>
+          Filtrar falsos positivos de un scan de cientos de hosts para llegar a lo que importa.
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">CÓMO LLEGUÉ ACÁ</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year mono">2007 — 2024</div>
+          <div class="tl-title">Técnico en neurofisiología clínica</div>
+          <div class="tl-desc">EEG, polisomnografía y ECG en Hospital Argerich, CEMIC y otros centros. Análisis de trazados de más de 500 pacientes.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year mono">2025</div>
+          <div class="tl-title">Primeros pasos autodidactas</div>
+          <div class="tl-desc">Ekoparty Hackademy, fundamentos prácticos de hacking (WiFi, redes, bases de datos, Android). Primeras herramientas propias.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year mono">2025 — 2026</div>
+          <div class="tl-title">Construcción del stack propio</div>
+          <div class="tl-desc">Phantom Brain, Bounty Hunter y HacXGPT toman forma. Primeros reportes en programas reales de bug bounty.</div>
+        </div>
+        <div class="tl-item now">
+          <div class="tl-year mono">HOY</div>
+          <div class="tl-title">Buscando el siguiente paso</div>
+          <div class="tl-desc">Bug bounty activo, herramientas en desarrollo continuo, y la mira puesta en un rol remoto de seguridad ofensiva.</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">STACK PERSONAL</div>
+      <div class="stack-table">
+        <div class="stack-row">
+          <div class="stack-key mono">Lenguajes</div>
+          <div class="stack-val">Python, Bash</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Ofensiva</div>
+          <div class="stack-val">Burp Suite, Nuclei, subfinder, httpx, dalfox, Hashcat, Aircrack-ng, Scapy</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Hardware</div>
+          <div class="stack-val">Flipper Zero, WiFi Pineapple MK7, Proxmark3, adaptadores WiFi dual-band</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Infraestructura</div>
+          <div class="stack-val">Linux (Kali/Ubuntu), Raspberry Pi 4 como servidor 24/7, Tailscale, Ollama</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Idiomas</div>
+          <div class="stack-val">Español (nativo) · Inglés (avanzado)</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">FUERA DE LA TERMINAL</div>
+      <p>
+        Soy bajista. Produzco <strong>Umbra Sessions</strong>, un proyecto de dark jazz que
+        combina IA generativa con grabación de bajo en vivo — la misma curiosidad por
+        combinar herramientas nuevas con oficio real, aplicada a otro dominio.
+      </p>
+      <a href="https://youtube.com/@umbrasessions" class="umbra-link mono">▸ escuchar en YouTube</a>
+    </section>
+  </div>
+
+  <Footer backLabel="→ hablemos" backHref="/contacto" />
+</BaseLayout>

@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Connector from '../../components/Connector.astro';
+---
+
+<BaseLayout title="Phantom Brain" description="Asistente de pentesting con IA local que integra hardware real con modelos de lenguaje corriendo on-device.">
+  <style>
+    .breadcrumb {
+      padding-top: 28px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dimmer);
+      letter-spacing: 0.5px;
+    }
+    .breadcrumb a { color: var(--text-dimmer); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .hero { padding: 28px 0 48px; }
+    .eyebrow-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .status { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-status); box-shadow: 0 0 8px var(--green-status); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 42px; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 18px; }
+    h1 .accent-text { color: var(--accent); }
+    .thesis { font-size: 17px; color: var(--text-dim); max-width: 540px; margin-bottom: 28px; }
+    .badges { margin-bottom: 28px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .arch-row { display: flex; align-items: center; gap: 0; overflow-x: auto; padding: 24px 0 12px; }
+    .arch-card { flex: 0 0 auto; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; min-width: 130px; text-align: center; }
+    .arch-card .arch-name { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .arch-card .arch-desc { font-size: 10.5px; color: var(--text-dimmer); line-height: 1.4; }
+    .arch-arrow { flex: 0 0 auto; color: var(--accent-dim); font-size: 18px; padding: 0 6px; }
+
+    .tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 18px; }
+    .tool-item { border: 1px solid var(--border); border-left: 2px solid var(--accent-dim); background: var(--bg-raised); padding: 12px 14px; border-radius: 4px; }
+    .tool-item .tool-name { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent); margin-bottom: 3px; }
+    .tool-item .tool-desc { font-size: 12px; color: var(--text-dim); }
+
+    .demo-frame { background: #000; border: 1px solid var(--border); border-radius: 6px; margin-top: 14px; overflow: hidden; }
+    .demo-frame-bar { background: var(--bg-raised); border-bottom: 1px solid var(--border); padding: 9px 14px; display: flex; align-items: center; gap: 8px; }
+    .demo-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+    .demo-frame-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); margin-left: 6px; }
+    .demo-frame-body { padding: 50px 20px; text-align: center; }
+    .demo-frame-body .mono { font-size: 12.5px; color: var(--text-dimmer); }
+    .demo-soon { color: var(--accent); font-size: 11px; letter-spacing: 1px; margin-top: 10px; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+      .tool-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / <a href="/proyectos">proyectos</a> / phantom-brain</div>
+
+    <section class="hero">
+      <div class="eyebrow-row">
+        <span class="eyebrow mono">[PHANTOM_BRAIN]</span>
+        <span class="status"><span class="status-dot"></span> v0.9 · ACTIVO</span>
+      </div>
+
+      <h1>Asistente de pentesting<br>con <span class="accent-text">IA local</span>.</h1>
+
+      <p class="thesis">
+        Framework modular en Python que conecta modelos de IA corriendo en hardware propio
+        con herramientas de pentesting reales — WiFi, NFC, Sub-GHz y RFID — sin depender
+        de ningún servicio en la nube.
+      </p>
+
+      <div class="badges">
+        <span class="badge">PYTHON</span>
+        <span class="badge">FLASK</span>
+        <span class="badge">OLLAMA</span>
+        <span class="badge">SQLITE</span>
+        <span class="badge">14/14 TESTS</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://github.com/OttoyRocky/phantom-brain" class="btn btn-primary">→ Ver en GitHub</a>
+        <a href="#demo" class="btn btn-secondary">Ver demo</a>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">EL PROBLEMA</div>
+      <p>
+        Una captura de WiFi, una tarjeta NFC clonada o una señal Sub-GHz interceptada no
+        significan nada hasta que alguien con experiencia las interpreta. Ese análisis suele
+        requerir conocimiento disperso entre varias herramientas — y en la mayoría de los
+        casos, depende de mandar datos a un servicio externo.
+      </p>
+      <p>
+        <strong>Phantom Brain</strong> automatiza esa primera lectura: clasifica el tipo de
+        captura, la analiza con un modelo de lenguaje corriendo localmente, y devuelve un
+        reporte estructurado con nivel de riesgo — todo en el hardware del operador, sin que
+        el dato salga de la red.
+      </p>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">ARQUITECTURA</div>
+      <p>Cada captura pasa por una cadena fija de responsabilidades, no por un script monolítico:</p>
+
+      <div class="arch-row">
+        <div class="arch-card">
+          <div class="arch-name">Classifier</div>
+          <div class="arch-desc">detecta el tipo de captura</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-card">
+          <div class="arch-name">Tool Registry</div>
+          <div class="arch-desc">enruta al wrapper correcto</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-card">
+          <div class="arch-name">BaseTool</div>
+          <div class="arch-desc">contrato común de análisis</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-card">
+          <div class="arch-name">Ollama (LLM)</div>
+          <div class="arch-desc">interpreta resultado</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-card">
+          <div class="arch-name">ToolResult</div>
+          <div class="arch-desc">riesgo + reporte</div>
+        </div>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-item">
+          <div class="tool-name">WPA2Tool</div>
+          <div class="tool-desc">Handshakes y PMKID</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">NFCTool</div>
+          <div class="tool-desc">Dumps NFC/RFID</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">ProxmarkTool</div>
+          <div class="tool-desc">Lecturas de Proxmark3</div>
+        </div>
+        <div class="tool-item">
+          <div class="tool-name">SubGHzTool</div>
+          <div class="tool-desc">Señales Sub-GHz / Flipper</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">STACK Y DECISIONES</div>
+      <div class="stack-table">
+        <div class="stack-row">
+          <div class="stack-key mono">Ollama local</div>
+          <div class="stack-val">Sin esto, cada captura viajaría a una API externa. phi3:mini corre cómodo en una Raspberry Pi 4.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">SQLite</div>
+          <div class="stack-val">Cero infraestructura adicional para un framework que ya corre en un solo nodo.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Flask API</div>
+          <div class="stack-val">4 endpoints minimalistas — status, upload, analyze, analysis/&lt;id&gt; — para integrarlo en otros scripts.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">RiskLevel tipado</div>
+          <div class="stack-val">Cada herramienta devuelve el mismo contrato. Agregar un tool nuevo no rompe nada existente.</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block" id="demo">
+      <div class="section-label">DEMO</div>
+      <div class="demo-frame">
+        <div class="demo-frame-bar">
+          <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+          <div class="demo-frame-title mono">phantom-brain — análisis en vivo</div>
+        </div>
+        <div class="demo-frame-body">
+          <div class="mono">grabación asciinema pendiente</div>
+          <div class="demo-soon mono">// PRÓXIMAMENTE</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">ESTADO DEL PROYECTO</div>
+      <div class="status-panel">
+        <div class="status-grid">
+          <div class="stat">
+            <div class="stat-num accent">v0.9</div>
+            <div class="stat-label mono">VERSIÓN ACTUAL</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">14/14</div>
+            <div class="stat-label mono">TESTS PASANDO</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label mono">ENTORNOS SINCRONIZADOS</div>
+          </div>
+        </div>
+        <div class="next-steps">
+          <div class="ns-label mono">SIGUIENTE</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Grabación demo asciinema</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Talk Ekoparty BA 2026</div>
+          <div class="ns-item"><span class="ns-check">[✓]</span> README bilingüe (ES/EN)</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">PROBARLO LOCALMENTE</div>
+      <p>El código es público. Requiere Ollama corriendo localmente con un modelo descargado.</p>
+      <div class="install-box">
+        <div><span class="comment">// clonar el repo</span></div>
+        <div class="cmd">git clone github.com/OttoyRocky/phantom-brain</div>
+        <div style="height:8px"></div>
+        <div><span class="comment">// instalar dependencias</span></div>
+        <div class="cmd">pip install -r requirements.txt</div>
+        <div style="height:8px"></div>
+        <div><span class="comment">// correr</span></div>
+        <div class="cmd">python phantom_brain.py</div>
+      </div>
+    </section>
+  </div>
+
+  <Footer backLabel="← volver a proyectos" backHref="/proyectos" />
+</BaseLayout>

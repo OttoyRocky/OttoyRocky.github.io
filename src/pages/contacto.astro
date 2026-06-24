@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+import Connector from '../components/Connector.astro';
+---
+
+<BaseLayout title="Contacto" description="Dos canales de contacto: oportunidades profesionales y comunidad técnica.">
+  <style>
+    .wrap { max-width: 720px; }
+    .breadcrumb { padding-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.5px; }
+    .breadcrumb a { color: var(--text-dimmer); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .hero { padding: 28px 0 40px; }
+    h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 36px; line-height: 1.2; letter-spacing: -0.5px; margin: 20px 0 14px; }
+    .lede { font-size: 16.5px; color: var(--text-dim); max-width: 540px; }
+
+    .channels { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+    .channel-card { border-radius: 8px; padding: 26px 28px; position: relative; overflow: hidden; }
+    .channel-card.formal { background: var(--bg-raised); border: 1px solid var(--border); border-left: 3px solid var(--accent); }
+    .channel-card.community { background: var(--bg-raised); border: 1px solid var(--border); border-left: 3px solid var(--blue); }
+
+    .ch-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .ch-icon { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 3px 9px; border-radius: 3px; letter-spacing: 0.5px; }
+    .formal .ch-icon { color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent-dim); }
+    .community .ch-icon { color: var(--blue); background: var(--blue-glow); border: 1px solid var(--blue-dim); }
+    .ch-title { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--text); }
+
+    .ch-desc { font-size: 13.5px; color: var(--text-dim); margin: 10px 0 18px; max-width: 480px; }
+
+    .ch-action {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+      background: #000; border: 1px solid var(--border); border-radius: 5px;
+      padding: 13px 16px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    }
+    .ch-action .ch-value { color: var(--text); }
+    .formal .ch-action .ch-value { color: var(--accent); }
+    .community .ch-action .ch-value { color: var(--blue); }
+    .ch-action .ch-copy { color: var(--text-dimmer); font-size: 11px; }
+
+    .ch-note { font-size: 11.5px; color: var(--text-dimmer); margin-top: 10px; }
+
+    .other-links { display: flex; flex-direction: column; gap: 0; margin-top: 14px; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .other-link { display: flex; align-items: center; justify-content: space-between; padding: 13px 18px; border-bottom: 1px solid var(--border); text-decoration: none; }
+    .other-link:last-child { border-bottom: none; }
+    .other-link:hover { background: var(--bg-raised); }
+    .ol-name { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); }
+    .ol-handle { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dimmer); }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 28px; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / contacto</div>
+
+    <section class="hero">
+      <span class="eyebrow mono">[CONTACTO]</span>
+      <h1>Hablemos.</h1>
+      <p class="lede">
+        Dos canales, según qué necesites: una vía formal para oportunidades de trabajo,
+        y un canal directo para la comunidad — colaboración, dudas técnicas, o simplemente
+        decir hola.
+      </p>
+    </section>
+
+    <div class="channels">
+      <div class="channel-card formal">
+        <div class="ch-top">
+          <span class="ch-icon mono">PROFESIONAL</span>
+        </div>
+        <div class="ch-title">Oportunidades laborales</div>
+        <p class="ch-desc">
+          Para roles remotos en seguridad ofensiva, pentesting o AppSec. Esta vía usa mi
+          nombre legal — Nicolás Albanese — el mismo que verás en LinkedIn y en mi CV.
+        </p>
+        <div class="ch-action">
+          <span class="ch-value">nicoalbanese85@gmail.com</span>
+          <span class="ch-copy">copiar</span>
+        </div>
+        <div class="ch-note mono">→ linkedin.com/in/nicolás-albanese-61275174</div>
+      </div>
+
+      <div class="channel-card community">
+        <div class="ch-top">
+          <span class="ch-icon mono">COMUNIDAD</span>
+        </div>
+        <div class="ch-title">Charla técnica, colaboración, dudas</div>
+        <p class="ch-desc">
+          Para quien quiera hablar de Phantom Brain, bug bounty, hardware hacking, o
+          simplemente conectar dentro de la comunidad — sin pasar por una identidad formal.
+        </p>
+        <div class="ch-action">
+          <span class="ch-value">.bassfunk · Discord</span>
+          <span class="ch-copy">copiar</span>
+        </div>
+        <div class="ch-note mono">→ reddit.com/u/bassfunk</div>
+      </div>
+    </div>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">EN OTRAS PLATAFORMAS</div>
+      <div class="other-links">
+        <a href="https://github.com/OttoyRocky" class="other-link">
+          <span class="ol-name mono">GitHub</span>
+          <span class="ol-handle mono">OttoyRocky</span>
+        </a>
+        <a href="https://bugcrowd.com/h/ottopavlovb2c70c3c-bb09-45ee-9ea2-bc187713b773" class="other-link">
+          <span class="ol-name mono">Bugcrowd</span>
+          <span class="ol-handle mono">otto866</span>
+        </a>
+        <a href="https://hackerone.com/otto866" class="other-link">
+          <span class="ol-name mono">HackerOne</span>
+          <span class="ol-handle mono">otto866</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <Footer backLabel="← volver al inicio" backHref="/" />
+</BaseLayout>

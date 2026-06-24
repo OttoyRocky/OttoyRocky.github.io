@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+import Connector from '../../components/Connector.astro';
+---
+
+<BaseLayout title="Bounty Hunter" description="Pipeline de reconocimiento automatizado para bug bounty: descubrimiento, verificación, escaneo y priorización con IA.">
+  <style>
+    .breadcrumb { padding-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.5px; }
+    .breadcrumb a { color: var(--text-dimmer); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent); }
+
+    .hero { padding: 28px 0 48px; }
+    .eyebrow-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .status { display: flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-status); box-shadow: 0 0 8px var(--green-status); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    h1 { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 42px; line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 18px; }
+    h1 .accent-text { color: var(--accent); }
+    .thesis { font-size: 17px; color: var(--text-dim); max-width: 540px; margin-bottom: 28px; }
+    .badges { margin-bottom: 28px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-disabled {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.3px;
+      padding: 10px 18px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--text-dimmer); background: var(--bg-raised);
+      cursor: not-allowed;
+    }
+
+    .pipeline { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding: 24px 0 12px; }
+    .pipe-stage { flex: 0 0 auto; background: var(--bg-raised); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; min-width: 120px; }
+    .pipe-stage .pipe-phase { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--accent); letter-spacing: 0.5px; margin-bottom: 6px; }
+    .pipe-stage .pipe-tool { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .pipe-stage .pipe-desc { font-size: 10.5px; color: var(--text-dimmer); line-height: 1.4; }
+    .pipe-arrow { flex: 0 0 auto; color: var(--accent-dim); font-size: 18px; padding: 0 4px; display: flex; align-items: center; }
+
+    .case-panel { background: var(--bg-raised); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 6px; padding: 20px; margin-top: 14px; }
+    .case-panel .case-title { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); margin-bottom: 8px; font-weight: 600; }
+    .case-panel .case-desc { font-size: 13.5px; color: var(--text-dim); margin-bottom: 10px; }
+    .case-tag { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-dimmer); border: 1px solid var(--border); padding: 3px 8px; border-radius: 3px; margin-right: 6px; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 32px; }
+    }
+  </style>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">otto</a> / <a href="/proyectos">proyectos</a> / bounty-hunter</div>
+
+    <section class="hero">
+      <div class="eyebrow-row">
+        <span class="eyebrow mono">[BOUNTY_HUNTER]</span>
+        <span class="status"><span class="status-dot"></span> ACTIVO · EN PRODUCCIÓN</span>
+      </div>
+
+      <h1>Pipeline de recon<br>para <span class="accent-text">bug bounty</span>.</h1>
+
+      <p class="thesis">
+        Orquestador que encadena descubrimiento de subdominios, verificación de hosts vivos
+        y escaneo de vulnerabilidades — con un módulo de IA local para priorizar qué mirar
+        primero cuando el alcance es grande.
+      </p>
+
+      <div class="badges">
+        <span class="badge">PYTHON</span>
+        <span class="badge">SUBFINDER</span>
+        <span class="badge">NUCLEI</span>
+        <span class="badge">DALFOX</span>
+        <span class="badge">OLLAMA</span>
+      </div>
+
+      <div class="cta-row">
+        <span class="btn btn-disabled" aria-disabled="true">🔒 Repo privado</span>
+        <a href="#casos" class="btn btn-secondary">Ver hallazgos</a>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">EL PROBLEMA</div>
+      <p>
+        Cuando un programa de bug bounty define un alcance wildcard (<span class="mono">*.empresa.com</span>),
+        el primer trabajo no es buscar vulnerabilidades — es mapear qué existe. Hacerlo a mano,
+        herramienta por herramienta, no escala cuando el alcance tiene cientos de subdominios.
+      </p>
+      <p>
+        <strong>Bounty Hunter</strong> automatiza esa primera fase: descubre, verifica y escanea
+        en cadena, y deja resultados estructurados por objetivo — para que el tiempo de análisis
+        humano se invierta en confirmar hallazgos, no en correr comandos uno por uno.
+      </p>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">PIPELINE</div>
+      <p>Cuatro fases encadenadas, cada una alimentando a la siguiente:</p>
+
+      <div class="pipeline">
+        <div class="pipe-stage">
+          <div class="pipe-phase">FASE 1</div>
+          <div class="pipe-tool">subfinder</div>
+          <div class="pipe-desc">descubre subdominios</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-stage">
+          <div class="pipe-phase">FASE 2</div>
+          <div class="pipe-tool">httpx</div>
+          <div class="pipe-desc">filtra hosts vivos</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-stage">
+          <div class="pipe-phase">FASE 2B</div>
+          <div class="pipe-tool">BypassNinja</div>
+          <div class="pipe-desc">reintenta 403 bloqueados</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-stage">
+          <div class="pipe-phase">FASE 3</div>
+          <div class="pipe-tool">nuclei + dalfox</div>
+          <div class="pipe-desc">escanea vulnerabilidades</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-stage">
+          <div class="pipe-phase">FASE 4</div>
+          <div class="pipe-tool">Ollama</div>
+          <div class="pipe-desc">prioriza resultados</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">STACK Y DECISIONES</div>
+      <div class="stack-table">
+        <div class="stack-row">
+          <div class="stack-key mono">subfinder + httpx</div>
+          <div class="stack-val">Pasivo primero. No toca el objetivo hasta confirmar qué hosts están realmente vivos.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">BypassNinja (fase 2b)</div>
+          <div class="stack-val">Muchos 403 son bloqueos mal configurados, no protecciones reales — vale la pena reintentar antes de descartar.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">Ollama (mistral:7b)</div>
+          <div class="stack-val">Con cientos de resultados de nuclei, un modelo local ayuda a separar ruido de señal antes de revisar a mano.</div>
+        </div>
+        <div class="stack-row">
+          <div class="stack-key mono">OpSec por diseño</div>
+          <div class="stack-val">Rate limiting con delays aleatorios y validación de alcance antes de cada corrida — no es opcional.</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block" id="casos">
+      <div class="section-label">HALLAZGOS REALES</div>
+      <p>El pipeline ya generó reportes presentados y reconocidos en programas activos:</p>
+
+      <div class="case-panel">
+        <div class="case-title">PayPal — Checkout campaign</div>
+        <div class="case-desc">Reporte presentado y reconocido con bounty de cortesía.</div>
+        <span class="case-tag">BUGCROWD</span>
+        <span class="case-tag">RECONOCIDO</span>
+      </div>
+
+      <div class="case-panel">
+        <div class="case-title">TheFork — GraphQL</div>
+        <div class="case-desc">Reporte aceptado como hallazgo válido. Detalles bajo embargo hasta autorización de disclosure.</div>
+        <span class="case-tag">BUGCROWD</span>
+        <span class="case-tag">ACEPTADO (DUPLICADO)</span>
+      </div>
+
+      <div class="case-panel">
+        <div class="case-title">Zendesk — Control de acceso</div>
+        <div class="case-desc">Validación de endpoints sensibles. Protección confirmada correcta.</div>
+        <span class="case-tag">BUGCROWD</span>
+        <span class="case-tag">CERRADO</span>
+      </div>
+
+      <div class="note-box">
+        <strong>Nota de disclosure:</strong> los detalles técnicos de hallazgos activos no se
+        publican hasta que el programa correspondiente autoriza disclosure público. Esta
+        sección se actualiza a medida que cada caso se resuelve.
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">ESTADO DEL PROYECTO</div>
+      <div class="status-panel">
+        <div class="status-grid">
+          <div class="stat">
+            <div class="stat-num accent">4</div>
+            <div class="stat-label mono">FASES EN PRODUCCIÓN</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label mono">PROGRAMAS ACTIVOS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label mono">BOUNTY COBRADO</div>
+          </div>
+        </div>
+        <div class="next-steps">
+          <div class="ns-label mono">SIGUIENTE</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Setx permanente para Ollama host binding</div>
+          <div class="ns-item pending"><span class="ns-check">[ ]</span> Memoria de chat + sugerencias de comando en HacXGPT</div>
+          <div class="ns-item"><span class="ns-check">[✓]</span> Integración BypassNinja como fase 2b</div>
+        </div>
+      </div>
+    </section>
+
+    <Connector />
+
+    <section class="block">
+      <div class="section-label">CÓDIGO</div>
+      <p>
+        Este repositorio es privado — contiene lógica específica de targets y configuración
+        que prefiero no exponer públicamente mientras está en uso activo en programas de
+        bug bounty. Puedo compartir el código en una entrevista técnica o bajo NDA si es
+        relevante para el rol.
+      </p>
+      <div class="note-box">
+        <strong>¿Te interesa ver el código?</strong> Escribime por
+        <a href="/contacto" style="color: var(--accent); text-decoration: none;">contacto</a>
+        y lo coordinamos.
+      </div>
+    </section>
+  </div>
+
+  <Footer backLabel="← volver a proyectos" backHref="/proyectos" />
+</BaseLayout>
